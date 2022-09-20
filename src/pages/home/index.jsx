@@ -11,17 +11,21 @@ import Footer from "../../components/footer";
 // Features
 import Sorting from "../../features/sorting";
 import sortingOptions from "../../features/sorting/options.js";
+import Brands from "../../features/brands";
 
+// Services
+import companies from "../../api/mocks/companies.json";
 
 const Home = () => {
+  const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSorting, setSelectedSorting] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    filteredData.sort(handleSorting(selectedSorting));    
+    filteredData.sort(handleSortingClick(selectedSorting));
   }, [selectedSorting]);
 
-  const handleSorting = (property) => {
+  const handleSortingClick = (property) => {
     let newFilteredData = [...filteredData];
     if (property === "lowToHigh") {
       newFilteredData = newFilteredData.sort((a, b) => a.price - b.price);
@@ -33,7 +37,18 @@ const Home = () => {
       newFilteredData = newFilteredData.sort((a, b) => a.added - b.added);
     }
     setFilteredData(newFilteredData);
-  }
+  };
+
+  const handleBrandsClick = (val) => {
+    let newSelectedBrands = [...selectedBrands];
+    const found = newSelectedBrands.find((item) => item === val);
+    if (found) {
+      newSelectedBrands = newSelectedBrands.filter((item) => item !== val);
+    } else {
+      newSelectedBrands.push(val);
+    }
+    setSelectedBrands(newSelectedBrands);
+  };
 
   return (
     <>
@@ -45,6 +60,12 @@ const Home = () => {
             data={sortingOptions}
             value={selectedSorting}
             onChange={(val) => setSelectedSorting(val)}
+          />
+          <Brands
+            title="Brands"
+            data={companies}
+            value={selectedBrands}
+            onChange={(val) => handleBrandsClick(val)}
           />
         </Aside>
         <Main></Main>
