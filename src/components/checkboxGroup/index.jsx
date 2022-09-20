@@ -43,19 +43,6 @@ const CbxGroupBody = styled.div`
       }
   }
   `;
-
-const CbxGroupItem = styled.div`
-    height: 22px;
-    display: flex;
-    margin-bottom: 16px;
-    cursor: pointer;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-  }
-  `;
-
 const CbxGroupItemIcon = styled.div`
   width: 22px;
   height: 22px;
@@ -64,15 +51,29 @@ const CbxGroupItemIcon = styled.div`
   box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4);
   }
   `;
+const CbxGroupItem = styled.div.attrs((props) => ({
+  status: props.status || "passive",
+}))`
+  height: 22px;
+  display: flex;
+  margin-bottom: 16px;
+  cursor: pointer;
 
-//   .market-checkbox-group-item[status="active"]
-//     > .market-checkbox-group-item-icon {
-//     background-color: var(--themeColor);
-//     background-image: url("../../assets/icons/icon-check-white.png");
-//     background-size: 10px 7px;
-//     background-repeat: no-repeat;
-//     background-position: center;
-//   }
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  ${props => props.status === "active" &&
+  ` 
+    & > ${CbxGroupItemIcon} {
+      background-color: ${colors.blue};
+      background-image: url("../../assets/icons/check-white.png");
+      background-size: 10px 7px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    `}
+`;
 
 const CbxGroupItemLabel = styled.div`
     height: 22px;
@@ -139,7 +140,7 @@ const CheckboxGroup = ({ data, value, onChange, placeholder }) => {
         {filteredData.map((item, index) => (
           <React.Fragment key={index}>
             <CbxGroupItem
-              status={value?.includes(item.id) ? "active" : "passive"}
+              status={value?.includes(item.id) ? "active" : "passive"}              
               onClick={() => onChange(item.id)}
             >
               <CbxGroupItemIcon />
