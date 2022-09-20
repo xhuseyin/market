@@ -15,7 +15,7 @@ const LinkContainer = styled.div`
   &:after {
     content: ".";
     font-size: 30px;
-    font-family: marketFont400;
+    font-weight: 400;
     position: absolute;
     top: -10px;
     width: 30px;
