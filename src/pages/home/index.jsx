@@ -12,14 +12,18 @@ import Footer from "../../components/footer";
 import Sorting from "../../features/sorting";
 import sortingOptions from "../../features/sorting/options.js";
 import Brands from "../../features/brands";
+import Tags from "../../features/tags";
 
 // Services
 import companies from "../../api/mocks/companies.json";
+import items from "../../api/mocks/items.json";
 
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSorting, setSelectedSorting] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     filteredData.sort(handleSortingClick(selectedSorting));
@@ -50,6 +54,33 @@ const Home = () => {
     setSelectedBrands(newSelectedBrands);
   };
 
+  const handleTagsClick = (val) => {
+    let newSelectedTags = [...selectedTags];
+    const found = newSelectedTags.find((item) => item === val);
+    if (found) {
+      newSelectedTags = newSelectedTags.filter((item) => item !== val);
+    } else {
+      newSelectedTags.push(val);
+    }
+    setSelectedTags(newSelectedTags);
+  };
+
+  function getTags(data) {
+    const tagsData = [];
+    data.forEach((item) => {
+      item.tags.forEach((tag) => {
+        if (!tagsData.includes(tag)) {
+          tagsData.push(tag);
+        }
+      });
+    });
+    setTags(tagsData.sort());
+  }
+
+  useEffect(() => {
+    getTags(items);
+  }, []);
+
   return (
     <>
       <Header center={<Logo />} />
@@ -66,6 +97,12 @@ const Home = () => {
             data={companies}
             value={selectedBrands}
             onChange={(val) => handleBrandsClick(val)}
+          />
+          <Tags
+            title="Tags"
+            data={tags}
+            value={selectedTags}
+            onChange={(val) => handleTagsClick(val)}
           />
         </Aside>
         <Main></Main>
