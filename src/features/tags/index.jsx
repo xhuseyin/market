@@ -3,9 +3,9 @@ import Title from "../../components/boxTitle";
 import CheckboxGroup from "../../components/checkboxGroup";
 
 const Tags = ({ title, data, value, onChange }) => {
-  const mappedData = data.map((obj) => {
+  const mappedData = data.map(function (obj) {
     return {
-      id: obj,
+      id: obj.toLowerCase(),
       label: obj,
     };
   });

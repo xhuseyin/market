@@ -49,7 +49,7 @@ const TileLabel = styled.div`
   text-align: left;
 `;
 
-const TileButton = styled.button`
+const TileButton = styled.div`
   position: absolute;
   width: 100%;
   height: 22px;

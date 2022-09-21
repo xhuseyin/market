@@ -11,7 +11,16 @@ const Filter = styled.div`
   margin: 16px 0;
 `;
 
-const FilterButton = styled.div`
+const FilterButton = styled.div.attrs((props) => ({
+  status: props.status || "passive",
+}))`
+
+${(props) => props.status === "active" &&
+`
+  background-color: ${colors.blue};
+  color: ${colors.white7};
+`}
+
   width: 60px;
   height: 30px;
   line-height: 30px;
@@ -19,21 +28,12 @@ const FilterButton = styled.div`
   font-weight: 400;
   border-radius: 2px;
   margin-right: 8px;
-  background-color: ${colors.white5};
-  color: ${colors.white};
+  background-color: ${colors.white7};
+  color: ${colors.blue};
   text-align: center;
   cursor: pointer;
 
-  &:hover {
-    background-color: ${colors.white3};
-  }
 
-  &["active"] {
-    background-color: ${colors.blue};
-    &:hover {
-      background-color: ${colors.blue};
-    }
-  }
 `;
 
 const ProductFilter = ({ relatedTypes, selectedTypes, selectType }) => {

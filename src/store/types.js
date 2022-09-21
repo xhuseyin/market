@@ -1,0 +1,3 @@
+export const ADD_ITEM = "ADD_ITEM";
+export const INCREASE_AMOUNT = "INCREASE_AMOUNT";
+export const DECREASE_AMOUNT = "DECREASE_AMOUNT";

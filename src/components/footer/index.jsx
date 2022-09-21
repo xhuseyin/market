@@ -4,7 +4,7 @@ import colors from "../../theme/foundations/colors";
 const FooterContainer = styled.footer`
 display: flex;
 justify-content: center;
-background-color: ${colors.white1};
+background-color: ${colors.white6};
 width: auto;
 height: 63px;
 `;
