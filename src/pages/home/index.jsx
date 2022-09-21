@@ -13,6 +13,7 @@ import Sorting from "../../features/sorting";
 import sortingOptions from "../../features/sorting/options.js";
 import Brands from "../../features/brands";
 import Tags from "../../features/tags";
+import Products from "../../features/products";
 
 // Services
 import companies from "../../api/mocks/companies.json";
@@ -24,6 +25,8 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [tags, setTags] = useState([]);
+  const [relatedTypes, setRelatedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   useEffect(() => {
     filteredData.sort(handleSortingClick(selectedSorting));
@@ -77,6 +80,17 @@ const Home = () => {
     setTags(tagsData.sort());
   }
 
+  const onSelectType = (val) => {
+    let newSelectedTypes = [...selectedTypes];
+    const found = newSelectedTypes.find((item) => item === val);
+    if (found) {
+      newSelectedTypes = newSelectedTypes.filter((item) => item !== val);
+    } else {
+      newSelectedTypes.push(val);
+    }
+    setSelectedTypes(newSelectedTypes);
+  }
+
   useEffect(() => {
     getTags(items);
   }, []);
@@ -105,7 +119,15 @@ const Home = () => {
             onChange={(val) => handleTagsClick(val)}
           />
         </Aside>
-        <Main></Main>
+        <Main>
+        <Products
+            data={filteredData}
+            itemCount={16}
+            relatedTypes={relatedTypes}
+            selectedTypes={selectedTypes}
+            selectType={(val) => onSelectType(val)}
+          />
+        </Main>
         <Aside></Aside>
       </Content>
       <Footer></Footer>
