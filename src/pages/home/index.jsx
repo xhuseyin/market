@@ -7,6 +7,7 @@ import Content from "../../components/content";
 import Aside from "../../components/aside";
 import Main from "../../components/main";
 import Footer from "../../components/footer";
+import TotalBox from "../../components/totalBox";
 
 // Features
 import Sorting from "../../features/sorting";
@@ -15,6 +16,7 @@ import Brands from "../../features/brands";
 import Tags from "../../features/tags";
 import Products from "../../features/products";
 import Links from "../../features/links";
+import Basket from "../../features/basket";
 
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -172,7 +174,7 @@ const Home = () => {
 
   return (
     <>
-      <Header center={<Logo />} />
+      <Header center={<Logo />} right={<TotalBox/>} />
       <Content>
         <Aside>
           <Sorting
@@ -203,7 +205,9 @@ const Home = () => {
             selectType={(val) => onSelectType(val)}
           />
         </Main>
-        <Aside></Aside>
+        <Aside>
+          <Basket/>
+        </Aside>
       </Content>
       <Footer>
         <Links />
