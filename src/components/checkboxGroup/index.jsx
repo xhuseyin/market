@@ -112,7 +112,7 @@ const CheckboxGroup = ({ data, value, onChange, placeholder }) => {
       setFilteredData(filteredDataArray);
     } else {
       setFilteredData(data);
-    }
+    }    
   }, [data, searchParameter]);
 
   let timeoutId = 0;
@@ -129,7 +129,7 @@ const CheckboxGroup = ({ data, value, onChange, placeholder }) => {
     }, 1000);
   };
 
-  return (
+  return (    
     <CbxGroup>
       <CbxGroupSearch
         ref={searchInput}
