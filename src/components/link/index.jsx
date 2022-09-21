@@ -5,7 +5,7 @@ const LinkContainer = styled.div`
   font-weight: 400;
   text-align: center;
   padding: 0 15px;
-  color: var(${colors.blue});
+  color: ${colors.blue};
   position: relative;
   width: auto;
   height: 30px;

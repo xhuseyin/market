@@ -17,7 +17,7 @@ const Products = ({
   selectType,
   itemCount,
 }) => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
   const [activePage, setActivePage] = useState(1);

@@ -7,7 +7,7 @@ const SectionWrapper = styled.div`
   padding-top: 76px;
   height: auto;
   width: 100%;
-  background-color: ${colors.white1};
+  background-color: ${colors.white6};
 `;
 
 const Section = styled.section`

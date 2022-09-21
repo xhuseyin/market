@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
+import arrowRightIcon from '../../assets/icons/arrow-right.svg'
+import arrowLeftIcon from '../../assets/icons/arrow-left.svg'
 
 const Pagination = styled.div`
   width: inherit;
@@ -26,6 +28,7 @@ const PageItemLabel = styled.div`
   font-size: 14px;
   font-weight: 600;
   text-align: center;
+  color: ${colors.gray};
 `;
 
 const DirectionIcon = styled.div`
@@ -67,10 +70,11 @@ const Content = styled.div`
   cursor: pointer;
   color: ${colors.gray};
 
-  &[status="active"]{
+  ${(props) => props.status === "active" && `
     background-color: ${colors.blue};
     color: ${colors.white};
     border-radius: 2px;
+    `
   }
 `;
 const ProductPager = ({ activePage, onChange, dataCount, itemCount }) => {
@@ -79,7 +83,8 @@ const ProductPager = ({ activePage, onChange, dataCount, itemCount }) => {
   return (
     <Pagination>
       <PageItem onClick={() => onChange(activePage === 1 ? 1 : activePage - 1)}>
-        <LeftIcon />
+        {/* <LeftIcon /> */}
+        <img src={arrowLeftIcon} width={14} height={14}/>
         <PageItemLabel>Prev</PageItemLabel>
       </PageItem>
 
@@ -133,8 +138,11 @@ const ProductPager = ({ activePage, onChange, dataCount, itemCount }) => {
           onChange(activePage === pageCount ? pageCount : activePage + 1)
         }
       >
-        <PageItemLabel>Next</PageItemLabel>
-        <RightIcon />
+        <PageItemLabel>
+           Next         
+        </PageItemLabel>
+        {/* <RightIcon /> */}
+        <img src={arrowRightIcon} width={14} height={14}/>
       </PageItem>
     </Pagination>
   );

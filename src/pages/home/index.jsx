@@ -14,10 +14,7 @@ import sortingOptions from "../../features/sorting/options.js";
 import Brands from "../../features/brands";
 import Tags from "../../features/tags";
 import Products from "../../features/products";
-
-// Services
-import companies from "../../api/mocks/companies.json";
-import items from "../../api/mocks/items.json";
+import Links from "../../features/links";
 
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -27,10 +24,104 @@ const Home = () => {
   const [tags, setTags] = useState([]);
   const [relatedTypes, setRelatedTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    getCompanies();
+    getItems();
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     filteredData.sort(handleSortingClick(selectedSorting));
+    //eslint-disable-next-line
   }, [selectedSorting]);
+
+  useEffect(() => {
+    let brandFilterResult = [];
+    let tagFilterResult = [];
+    let typeFilterResult = [];
+
+    if (selectedBrands.length > 0) {
+      items.forEach((item) => {
+        if (selectedBrands.includes(item.manufacturer)) {
+          brandFilterResult.push(item);
+        }
+      });
+    } else {
+      brandFilterResult = [...items];
+    }
+
+    if (selectedTags.length > 0) {
+      brandFilterResult.forEach((item) => {
+        let tagCheck = false;
+        item.tags.forEach((tag) => {
+          if (selectedTags.includes(tag.toLowerCase())) {
+            tagCheck = true;
+          }
+        });
+        if (tagCheck) {
+          tagFilterResult.push(item);
+        }
+      });
+    } else {
+      tagFilterResult = brandFilterResult;
+    }
+
+    const types = [];
+    tagFilterResult.forEach((result) => {
+      const found = types.find((item) => item === result.itemType);
+      if (!found) {
+        types.push(result.itemType);
+      }
+    });
+    setRelatedTypes(types);
+    if (selectedTypes.length === 0) {
+      setSelectedTypes(types);
+    }
+
+    if (selectedTypes.length > 0) {
+      tagFilterResult.forEach((item) => {
+        if (selectedTypes.includes(item.itemType)) {
+          typeFilterResult.push(item);
+        }
+      });
+    } else {
+      typeFilterResult = tagFilterResult;
+    }
+
+    setFilteredData(typeFilterResult);
+  }, [selectedBrands, selectedTags, selectedTypes, items]);
+
+  function getCompanies() {
+    fetch(`../../mocks/companies.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCompanies(data);
+      });
+  }
+
+  function getItems() {
+    fetch(`../../mocks/items.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setItems(data);
+        getTags(data);
+      });
+  }
+
+  const getTags = (data) => {
+    const tagsData = [];
+    data.forEach((item) => {
+      item.tags.forEach((tag) => {
+        if (!tagsData.includes(tag)) {
+          tagsData.push(tag);
+        }
+      });
+    });
+    setTags(tagsData.sort());
+  };
 
   const handleSortingClick = (property) => {
     let newFilteredData = [...filteredData];
@@ -68,18 +159,6 @@ const Home = () => {
     setSelectedTags(newSelectedTags);
   };
 
-  function getTags(data) {
-    const tagsData = [];
-    data.forEach((item) => {
-      item.tags.forEach((tag) => {
-        if (!tagsData.includes(tag)) {
-          tagsData.push(tag);
-        }
-      });
-    });
-    setTags(tagsData.sort());
-  }
-
   const onSelectType = (val) => {
     let newSelectedTypes = [...selectedTypes];
     const found = newSelectedTypes.find((item) => item === val);
@@ -89,11 +168,7 @@ const Home = () => {
       newSelectedTypes.push(val);
     }
     setSelectedTypes(newSelectedTypes);
-  }
-
-  useEffect(() => {
-    getTags(items);
-  }, []);
+  };
 
   return (
     <>
@@ -120,7 +195,7 @@ const Home = () => {
           />
         </Aside>
         <Main>
-        <Products
+          <Products
             data={filteredData}
             itemCount={16}
             relatedTypes={relatedTypes}
@@ -130,7 +205,9 @@ const Home = () => {
         </Main>
         <Aside></Aside>
       </Content>
-      <Footer></Footer>
+      <Footer>
+        <Links />
+      </Footer>
     </>
   );
 };
