@@ -11,16 +11,7 @@ const Filter = styled.div`
   margin: 16px 0;
 `;
 
-const FilterButton = styled.div.attrs((props) => ({
-  status: props.status || "passive",
-}))`
-
-${(props) => props.status === "active" &&
-`
-  background-color: ${colors.blue};
-  color: ${colors.white7};
-`}
-
+const FilterButton = styled.div`
   width: 60px;
   height: 30px;
   line-height: 30px;
@@ -28,12 +19,15 @@ ${(props) => props.status === "active" &&
   font-weight: 400;
   border-radius: 2px;
   margin-right: 8px;
-  background-color: ${colors.white7};
-  color: ${colors.blue};
   text-align: center;
   cursor: pointer;
+  background-color: ${colors.white7};
+  color: ${colors.blue};
 
-
+  &:hover {
+    background-color: ${colors.blue};
+    color: ${colors.white7};
+  }
 `;
 
 const ProductFilter = ({ relatedTypes, selectedTypes, selectType }) => {
@@ -43,7 +37,9 @@ const ProductFilter = ({ relatedTypes, selectedTypes, selectType }) => {
         <React.Fragment key={index}>
           <FilterButton
             status={selectedTypes.includes(item) ? "active" : "passive"}
-            onClick={() => selectType(item)}
+            onClick={() => {
+              selectType(item);
+            }}
           >
             {item}
           </FilterButton>
