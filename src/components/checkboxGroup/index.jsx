@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
-import checkWhiteIcon from '../../assets/icons/check-white.svg'
+import checkWhiteIcon from "../../assets/icons/check-white.svg";
 
 const CbxGroup = styled.div`
   display: flex;
@@ -64,8 +64,9 @@ const CbxGroupItem = styled.div.attrs((props) => ({
     margin-bottom: 0;
   }
 
-  ${props => props.status === "active" &&
-  ` 
+  ${(props) =>
+    props.status === "active" &&
+    ` 
     & > ${CbxGroupItemIcon} {
       background-color: ${colors.blue};
       background-image: url(${checkWhiteIcon});
@@ -113,24 +114,20 @@ const CheckboxGroup = ({ data, value, onChange, placeholder }) => {
       setFilteredData(filteredDataArray);
     } else {
       setFilteredData(data);
-    }    
+    }
   }, [data, searchParameter]);
 
-  let timeoutId = 0;
   const onSearch = () => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      let searchValUpper = searchInput.current.value.toUpperCase();
-      searchValUpper = searchValUpper.replace("İ", "I");
-      searchValUpper = searchValUpper.replace("Ü", "U");
-      searchValUpper = searchValUpper.replace("Ö", "O");
-      searchValUpper = searchValUpper.replace("Ç", "C");
-      searchValUpper = searchValUpper.replace("Ş", "S");
-      setSearchParameter(searchValUpper);
-    }, 1000);
+    let searchValUpper = searchInput.current.value.toUpperCase();
+    searchValUpper = searchValUpper.replace("İ", "I");
+    searchValUpper = searchValUpper.replace("Ü", "U");
+    searchValUpper = searchValUpper.replace("Ö", "O");
+    searchValUpper = searchValUpper.replace("Ç", "C");
+    searchValUpper = searchValUpper.replace("Ş", "S");
+    setSearchParameter(searchValUpper);
   };
 
-  return (    
+  return (
     <CbxGroup>
       <CbxGroupSearch
         ref={searchInput}
@@ -141,7 +138,7 @@ const CheckboxGroup = ({ data, value, onChange, placeholder }) => {
         {filteredData.map((item, index) => (
           <React.Fragment key={index}>
             <CbxGroupItem
-              status={value?.includes(item.id) ? "active" : "passive"}              
+              status={value?.includes(item.id) ? "active" : "passive"}
               onClick={() => onChange(item.id)}
             >
               <CbxGroupItemIcon />
