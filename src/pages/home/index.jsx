@@ -32,12 +32,10 @@ const Home = () => {
   useEffect(() => {
     getCompanies();
     getItems();
-    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     filteredData.sort(handleSortingClick(selectedSorting));
-    //eslint-disable-next-line
   }, [selectedSorting]);
 
   useEffect(() => {
@@ -96,16 +94,16 @@ const Home = () => {
     setFilteredData(typeFilterResult);
   }, [selectedBrands, selectedTags, selectedTypes, items]);
 
-  function getCompanies() {
-    fetch(`../../mocks/companies.json`)
+  const getCompanies = () => {
+    fetch(`https://market-api-v4.herokuapp.com/companies`)
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
       });
   }
 
-  function getItems() {
-    fetch(`../../mocks/items.json`)
+  const getItems = () => {
+    fetch(`https://market-api-v4.herokuapp.com/items`)
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
