@@ -29,7 +29,7 @@ const Products = ({
 
   return (
     <>
-      <Title size="md" title="Products" />
+      <Title title="Products" />
       {data.length > 0 ? (
         <>
           <ProductFilter
