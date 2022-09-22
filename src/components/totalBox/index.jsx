@@ -20,13 +20,23 @@ const Text = styled.div`
   font-weight: 600;
   white-space: nowrap;
   color: ${colors.white};
+  margin-left: 8px;
+`;
+
+const BagIcon = styled.div`
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  background-image: url(${bagIcon});
+  background-size: cover;
+  margin-right: 8px;
 `;
 
 const TotalBox = () => {
   const { basket } = useSelector((state) => state);
   return (
     <Container>
-      <img src={bagIcon} alt={'total box icon'}/>
+      <BagIcon />
       <Text>₺ {basket.total > 0 ? basket.total.toFixed(2) : 0}</Text>
     </Container>
   );
