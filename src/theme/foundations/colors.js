@@ -7,6 +7,7 @@ const colors = {
     white5: '#ccc',
     white6: '#f5f5f5',
     white7: '#F2F0FD',
+    white8: '#F3F0FE',
     blue: '#1ea4ce',
     blueDark: '#147594',
     blueLight: '#6cd3f5',

@@ -24,7 +24,7 @@ const Body = styled.div`
 const BodyItem = styled.div`
   height: 72px;
   position: relative;
-  border-bottom: 2px solid ${colors.white4};
+  border-bottom: 1.02px solid ${colors.white4};
 `;
 
 const BodyItemLabel = styled.div`
@@ -84,18 +84,35 @@ const BodyTotalBox = styled.div`
   align-items: center;
 `;
 
-const IncreaseDecreaseButton = styled.div`
+const MinusIcon = styled.div`
   position: absolute;
-  right: ${(props) => props.right}px;
+  right: 64px;
   top: 20px;
   width: 32px;
   height: 32px;
   cursor: pointer;
   text-align: center;
-  line-height: ${(props) => props.lineHeight}px;
+  background-image: url(${minusIcon});
+  background-size: 10px 3px;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
-const BasketPanel = () => {
+const PlusIcon = styled.div`
+  position: absolute;
+  right: 0;
+  top: 20px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  text-align: center;
+  background-image: url(${plusIcon});
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const BasketBox = () => {
   const dispatch = useDispatch();
   const { basket } = useSelector((state) => state);
 
@@ -103,7 +120,7 @@ const BasketPanel = () => {
     <Container>
       <Body>
         {basket.list.length === 0 ? (
-          <EmptyResult label="No items in basket" />
+          <EmptyResult label="Basket is empty" />
         ) : (
           <>
             {basket.list.map((item, index) => (
@@ -111,21 +128,11 @@ const BasketPanel = () => {
                 <BodyItem>
                   <BodyItemLabel>{item.label}</BodyItemLabel>
                   <BodyItemPrice>₺ {item.price}</BodyItemPrice>
-                  <IncreaseDecreaseButton
-                    right={64}
-                    lineHeight={23}
+                  <MinusIcon
                     onClick={() => dispatch(decreaseAmount(item.id))}
-                  >
-                    <img src={minusIcon} alt={"minus icon"} />
-                  </IncreaseDecreaseButton>
+                  />
                   <BodyItemAmount>{item.amount}</BodyItemAmount>
-                  <IncreaseDecreaseButton
-                    right={0}
-                    lineHeight={32}
-                    onClick={() => dispatch(increaseAmount(item.id))}
-                  >
-                    <img src={plusIcon} alt={"plus icon"} />
-                  </IncreaseDecreaseButton>
+                  <PlusIcon onClick={() => dispatch(increaseAmount(item.id))} />
                 </BodyItem>
               </React.Fragment>
             ))}
@@ -141,4 +148,4 @@ const BasketPanel = () => {
   );
 };
 
-export default BasketPanel;
+export default BasketBox;

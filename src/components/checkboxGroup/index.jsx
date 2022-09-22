@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
+import checkWhiteIcon from '../../assets/icons/check-white.svg'
 
 const CbxGroup = styled.div`
   display: flex;
@@ -67,7 +68,7 @@ const CbxGroupItem = styled.div.attrs((props) => ({
   ` 
     & > ${CbxGroupItemIcon} {
       background-color: ${colors.blue};
-      background-image: url("../../assets/icons/check-white.png");
+      background-image: url(${checkWhiteIcon});
       background-size: 10px 7px;
       background-repeat: no-repeat;
       background-position: center;

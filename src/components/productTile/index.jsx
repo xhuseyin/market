@@ -14,7 +14,7 @@ const TileImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid ${colors.white5};
+  border: 1.17666px solid ${colors.white8};
   border-radius: 12px;
 `;
 

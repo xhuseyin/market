@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
+import checkBlueIcon from "../../assets/icons/check-blue.svg";
 
 const RadioGroup = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const Content = styled.div.attrs((props) => ({
     ` 
     & > ${Icon} {
       border: 2px solid ${colors.blue};
-      background-image: url("../../assets/icons/check-white.png");
+      background-image: url(${checkBlueIcon});
       background-size: 10px 7px;
       background-repeat: no-repeat;
       background-position: center;

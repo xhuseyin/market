@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
-import arrowRightIcon from '../../assets/icons/arrow-right.svg'
-import arrowLeftIcon from '../../assets/icons/arrow-left.svg'
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
+import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
 
 const Pagination = styled.div`
   width: inherit;
@@ -28,27 +28,25 @@ const PageItemLabel = styled.div`
   font-size: 14px;
   font-weight: 600;
   text-align: center;
-  color: ${colors.gray};
+  color: ${(props) => props.color};
 `;
 
 const DirectionIcon = styled.div`
   width: 24px;
   height: 24px;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-const LeftIcon = styled(DirectionIcon)`
-  background-image: url("../../assets/icons/left-arrow.png");
-
-  ${PageItemLabel} {
-    color: ${colors.blue};
-  }
+const LeftIcon = styled.div`
+  width: 14px;
+  height: 14px;
+  background-image: url(${arrowLeftIcon});
 `;
-const RightIcon = styled(DirectionIcon)`
-  background-image: url("../../assets/icons/right-arrow.png");
-
-  ${PageItemLabel} {
-    color: ${colors.gray};
-  }
+const RightIcon = styled.div`
+  width: 14px;
+  height: 14px;
+  background-image: url(${arrowRightIcon});
 `;
 
 const Container = styled.div`
@@ -70,22 +68,25 @@ const Content = styled.div`
   cursor: pointer;
   color: ${colors.gray};
 
-  ${(props) => props.status === "active" && `
+  ${(props) =>
+    props.status === "active" &&
+    `
     background-color: ${colors.blue};
     color: ${colors.white};
     border-radius: 2px;
-    `
-  }
+    `}
 `;
+
 const ProductPager = ({ activePage, onChange, dataCount, itemCount }) => {
   const pageCount = parseInt(dataCount / itemCount) + 1;
 
   return (
     <Pagination>
       <PageItem onClick={() => onChange(activePage === 1 ? 1 : activePage - 1)}>
-        {/* <LeftIcon /> */}
-        <img src={arrowLeftIcon} width={14} height={14}/>
-        <PageItemLabel>Prev</PageItemLabel>
+        <DirectionIcon>
+          <LeftIcon />
+        </DirectionIcon>
+        <PageItemLabel color={colors.blue}>Prev</PageItemLabel>
       </PageItem>
 
       <Container>
@@ -138,11 +139,10 @@ const ProductPager = ({ activePage, onChange, dataCount, itemCount }) => {
           onChange(activePage === pageCount ? pageCount : activePage + 1)
         }
       >
-        <PageItemLabel>
-           Next         
-        </PageItemLabel>
-        {/* <RightIcon /> */}
-        <img src={arrowRightIcon} width={14} height={14}/>
+        <PageItemLabel color={colors.gray}>Next</PageItemLabel>
+        <DirectionIcon>
+          <RightIcon />
+        </DirectionIcon>
       </PageItem>
     </Pagination>
   );
