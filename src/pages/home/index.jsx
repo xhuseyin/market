@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 
 // Components
 import Logo from "../../components/logo";
@@ -14,11 +14,9 @@ import Sorting from "../../features/sorting";
 import sortingOptions from "../../features/sorting/options.js";
 import Links from "../../features/links";
 import Basket from "../../features/basket";
-
-// Lazy(dynamic import) components
-const Brands = React.lazy(() => import("../../features/brands"));
-const Tags = React.lazy(() => import("../../features/tags"));
-const Products = React.lazy(() => import("../../features/products"));
+import Brands from "../../features/brands";
+import Tags from "../../features/tags";
+import Products from "../../features/products";
 
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -30,7 +28,7 @@ const Home = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [items, setItems] = useState([]);
-  
+
   useEffect(() => {
     getCompanies();
     getItems();
@@ -166,7 +164,7 @@ const Home = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <>
       <Header center={<Logo />} right={<TotalBox />} />
       <Content>
         <Aside>
@@ -205,7 +203,7 @@ const Home = () => {
       <Footer>
         <Links />
       </Footer>
-    </Suspense>
+    </>
   );
 };
 
