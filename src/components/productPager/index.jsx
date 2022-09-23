@@ -3,6 +3,7 @@ import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
 import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
+import device from "../../theme/foundations/devices";
 
 const Pagination = styled.div`
   width: inherit;
@@ -13,6 +14,10 @@ const Pagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${device.large} {
+    margin: 3rem;
+  }
 `;
 const PageItem = styled.div`
   width: 62px;

@@ -6,12 +6,19 @@ import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
 import minusIcon from "../../assets/icons/minus.svg";
 import plusIcon from "../../assets/icons/plus.svg";
+import device from "../../theme/foundations/devices";
 
 const Container = styled.div`
   height: auto;
   padding: 8px;
   background-color: ${colors.blue};
   border-radius: 2px;
+
+  @media ${device.large} {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Body = styled.div`

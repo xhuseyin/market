@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../theme/foundations/colors";
+import device from "../../theme/foundations/devices";
 
 const SectionWrapper = styled.div`
   display: flex;
@@ -8,20 +9,21 @@ const SectionWrapper = styled.div`
   height: auto;
   width: 100%;
   background-color: ${colors.white6};
+
+
 `;
 
 const Section = styled.section`
   display: flex;
   margin-top: 40px;
-  width: 800px;
+  width: 1232px;
 
-  @media screen and (min-width: 960px) {
-    width: 800px;
+  @media ${device.large} {
+    flex-direction: column;
+    width: 100%;
   }
 
-  @media screen and (min-width: 1200px) {
-    width: 1232px;
-  }
+
 `;
 
 const Content = ({ children }) => {

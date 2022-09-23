@@ -15,7 +15,7 @@ import sortingOptions from "../../features/sorting/options.js";
 import Links from "../../features/links";
 import Basket from "../../features/basket";
 
-// Lazy(dynamic) components
+// Lazy(dynamic import) components
 const Brands = React.lazy(() => import("../../features/brands"));
 const Tags = React.lazy(() => import("../../features/tags"));
 const Products = React.lazy(() => import("../../features/products"));
@@ -30,7 +30,7 @@ const Home = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [items, setItems] = useState([]);
-
+  
   useEffect(() => {
     getCompanies();
     getItems();

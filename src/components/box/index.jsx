@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import colors from '../../theme/foundations/colors'
+import device from "../../theme/foundations/devices";
 
 const Section = styled.section`
   margin-top: 12px;
@@ -8,6 +9,11 @@ const Section = styled.section`
   padding: 24px;
   background-color: ${colors.white2};
   border-radius: 2px;
+
+  @media ${device.large} {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 `;
 
 const Box = ({ children }) => {

@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../store/actions/basket";
 
 // Components
-import Title from "../../components/boxTitle";
 import Grid from "../../components/grid";
+import ProductTitle from "../../components/productTitle";
 import ProductFilter from "../../components/productFilter";
 import ProductPager from "../../components/productPager";
 import ProductTile from "../../components/productTile";
@@ -29,7 +29,7 @@ const Products = ({
 
   return (
     <>
-      <Title title="Products" />
+      <ProductTitle title="Products" />
       {data.length > 0 ? (
         <>
           <ProductFilter
