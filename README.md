@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Market App
+
+### :ticket: Deployment
+
+Website : [https://market-v4.netlify.app/](https://market-v4.netlify.app/) <br><br>
+Api : [https://market-api-v4.herokuapp.com](https://market-api-v4.herokuapp.com/)
+
+### 🏞️  A picture is worth a thousand words
+<img width="1273" alt="Screen Shot 2022-09-23 at 10 27 33 AM" src="https://user-images.githubusercontent.com/30313266/191910992-c0544b17-1adf-4d7f-9575-0a44b7af11cf.png">
+
+
+## Integration
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -29,42 +40,24 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Folder Structure 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- api &nbsp;&nbsp; ->                JSON server is responsible for servicing data https://market-api-v4.herokuapp.com/
+- assets/icons &nbsp;&nbsp; ->       SVG files  
+- components &nbsp;&nbsp; ->         Reusable components only for a Features
+- features &nbsp;&nbsp; ->           Features are responsible for more stuff than presentational components
+- pages &nbsp;&nbsp; ->              The application's home page. Features components are combined here
+- theme/colors &nbsp;&nbsp; ->       Keeps colors to use throughout the application
+- store &nbsp;&nbsp; ->              It manages and centralizes application state. Reducers are responsible for taking in two things: previous state.                                            Then they reduce it (read it return) to one entity: the new updated instance of state.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tech Stack
 
-## Learn More
+- react
+- redux
+- styled Components
+- create-react-app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
