@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 
 // Components
 import Logo from "../../components/logo";
@@ -12,11 +12,13 @@ import TotalBox from "../../components/totalBox";
 // Features
 import Sorting from "../../features/sorting";
 import sortingOptions from "../../features/sorting/options.js";
-import Brands from "../../features/brands";
-import Tags from "../../features/tags";
-import Products from "../../features/products";
 import Links from "../../features/links";
 import Basket from "../../features/basket";
+
+// Lazy(dynamic) components
+const Brands = React.lazy(() => import("../../features/brands"));
+const Tags = React.lazy(() => import("../../features/tags"));
+const Products = React.lazy(() => import("../../features/products"));
 
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -32,11 +34,8 @@ const Home = () => {
   useEffect(() => {
     getCompanies();
     getItems();
+    getTags();
   }, []);
-
-  useEffect(() => {
-    filteredData.sort(handleSortingClick(selectedSorting));
-  }, [selectedSorting]);
 
   useEffect(() => {
     let brandFilterResult = [];
@@ -100,40 +99,36 @@ const Home = () => {
       .then((data) => {
         setCompanies(data);
       });
-  }
+  };
 
   const getItems = () => {
     fetch(`https://market-api-v4.herokuapp.com/items`)
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
-        getTags(data);
       });
-  }
-
-  const getTags = (data) => {
-    const tagsData = [];
-    data.forEach((item) => {
-      item.tags.forEach((tag) => {
-        if (!tagsData.includes(tag)) {
-          tagsData.push(tag);
-        }
-      });
-    });
-    setTags(tagsData.sort());
   };
 
-  const handleSortingClick = (property) => {
+  const getTags = () => {
+    fetch(`../../tag.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTags(data);
+      });
+  };
+
+  const handleSortingClick = (val) => {
     let newFilteredData = [...filteredData];
-    if (property === "lowToHigh") {
+    if (val === "lowToHigh") {
       newFilteredData = newFilteredData.sort((a, b) => a.price - b.price);
-    } else if (property === "highToLow") {
+    } else if (val === "highToLow") {
       newFilteredData = newFilteredData.sort((a, b) => b.price - a.price);
-    } else if (property === "newToOld") {
+    } else if (val === "newToOld") {
       newFilteredData = newFilteredData.sort((a, b) => b.added - a.added);
-    } else if (property === "oldToNew") {
+    } else if (val === "oldToNew") {
       newFilteredData = newFilteredData.sort((a, b) => a.added - b.added);
     }
+    setSelectedSorting(val);
     setFilteredData(newFilteredData);
   };
 
@@ -171,15 +166,15 @@ const Home = () => {
   };
 
   return (
-    <>
-      <Header center={<Logo />} right={<TotalBox/>} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Header center={<Logo />} right={<TotalBox />} />
       <Content>
         <Aside>
           <Sorting
             title="Sorting"
             data={sortingOptions}
             value={selectedSorting}
-            onChange={(val) => setSelectedSorting(val)}
+            onChange={(val) => handleSortingClick(val)}
           />
           <Brands
             title="Brands"
@@ -204,13 +199,13 @@ const Home = () => {
           />
         </Main>
         <Aside>
-          <Basket/>
+          <Basket />
         </Aside>
       </Content>
       <Footer>
         <Links />
       </Footer>
-    </>
+    </Suspense>
   );
 };
 
