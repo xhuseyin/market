@@ -56,7 +56,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 - react
 - redux
-- styled Components
+- styled components
 - create-react-app
 
 
