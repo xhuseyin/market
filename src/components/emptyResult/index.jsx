@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import colors from "../../theme/foundations/colors"
+import styled from "styled-components";
+import colors from "../../theme/foundations/colors";
 
 const EmptyResultContainer = styled.div`
   height: 50px;
@@ -13,7 +13,7 @@ const EmptyResultContainer = styled.div`
 `;
 
 const EmptyResult = ({ label }) => {
-  return <EmptyResultContainer>{label}</EmptyResultContainer>
+  return <EmptyResultContainer>{label}</EmptyResultContainer>;
 };
 
-export default EmptyResult
+export default EmptyResult;
