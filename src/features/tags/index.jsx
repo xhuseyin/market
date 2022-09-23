@@ -3,7 +3,7 @@ import Title from "../../components/boxTitle";
 import CheckboxGroup from "../../components/checkboxGroup";
 
 const Tags = ({ title, data, value, onChange }) => {
-  const mappedData = data.map(function (obj) {
+  const mappedData = data.map((obj) => {
     return {
       id: obj.toLowerCase(),
       label: obj,
