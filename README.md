@@ -48,6 +48,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - features &nbsp;&nbsp; ->           Features are responsible for more stuff than presentational components
 - pages &nbsp;&nbsp; ->              The application's home page. Features components are combined here
 - theme/colors &nbsp;&nbsp; ->       Keeps colors to use throughout the application
+- theme/devices &nbsp;&nbsp; ->      Device media definitions
+- theme/sizes &nbsp;&nbsp; ->        Device sizes for responsive desing
 - store &nbsp;&nbsp; ->              It manages and centralizes application state. Reducers are responsible for taking in two things: previous state.                                            Then they reduce it (read it return) to one entity: the new updated instance of state.
 
 
