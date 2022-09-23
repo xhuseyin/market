@@ -187,7 +187,7 @@ const Home = () => {
   if (loading) {
     return <Spinner />;
   }
-
+  
   return (
     <>
       <Header center={<Logo />} right={<TotalBox />} />
