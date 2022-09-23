@@ -8,6 +8,7 @@ import Aside from "../../components/aside";
 import Main from "../../components/main";
 import Footer from "../../components/footer";
 import TotalBox from "../../components/totalBox";
+import Spinner from "../../components/spinner";
 
 // Features
 import Sorting from "../../features/sorting";
@@ -28,8 +29,10 @@ const Home = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getCompanies();
     getItems();
     getTags();
@@ -96,6 +99,12 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -104,6 +113,12 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -112,6 +127,12 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         setTags(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -162,6 +183,10 @@ const Home = () => {
     }
     setSelectedTypes(newSelectedTypes);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <>
