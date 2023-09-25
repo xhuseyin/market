@@ -95,7 +95,7 @@ const Home = () => {
   }, [selectedBrands, selectedTags, selectedTypes, items]);
 
   const getCompanies = () => {
-    fetch(`https://market-api-v4.herokuapp.com/companies`)
+    fetch(`https://market-api-vercel.vercel.app/companies`)
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data);
@@ -109,7 +109,7 @@ const Home = () => {
   };
 
   const getItems = () => {
-    fetch(`https://market-api-v4.herokuapp.com/items`)
+    fetch(`https://market-api-vercel.vercel.app/items`)
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
