@@ -3,7 +3,7 @@
 ### :ticket: Deployment
 
 Website : [https://market-v4.netlify.app/](https://market-v4.netlify.app/) <br><br>
-Api : [https://market-api-v4.herokuapp.com](https://market-api-v4.herokuapp.com/)
+Api : [https://market-api-vercel.vercel.app/](https://market-api-vercel.vercel.app/)
 
 ### 🏞️  A picture is worth a thousand words
 <img width="1273" alt="Screen Shot 2022-09-23 at 10 27 33 AM" src="https://user-images.githubusercontent.com/30313266/191910992-c0544b17-1adf-4d7f-9575-0a44b7af11cf.png">
@@ -42,16 +42,17 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Folder Structure 
 
-- api &nbsp;&nbsp; ->                JSON server is responsible for servicing data https://market-api-v4.herokuapp.com/
-- assets/icons &nbsp;&nbsp; ->       SVG files  
-- components &nbsp;&nbsp; ->         Reusable components only for a Features
-- features &nbsp;&nbsp; ->           Features are responsible for more stuff than presentational components
-- pages &nbsp;&nbsp; ->              The application's home page. Features components are combined here
-- theme/colors &nbsp;&nbsp; ->       Keeps colors to use throughout the application
-- theme/devices &nbsp;&nbsp; ->      Device media definitions
-- theme/sizes &nbsp;&nbsp; ->        Device sizes for responsive desing
-- store &nbsp;&nbsp; ->              It manages and centralizes application state. Reducers are responsible for taking in two things: previous state.                                            Then they reduce it (read it return) to one entity: the new updated instance of state.
+## Folder Structure 
 
+- **api**: JSON server responsible for servicing data. [Market API Vercel](https://market-api-vercel.vercel.app)
+- **assets/icons**: SVG files  
+- **components**: Reusable components, specifically designed for features.
+- **features**: Responsible for more functionality than just presentational components.
+- **pages**: The application's home page where feature components are combined.
+- **theme/colors**: Store colors to use throughout the application.
+- **theme/devices**: Device media definitions.
+- **theme/sizes**: Device sizes for responsive design.
+- **store**: Manages and centralizes application state. Reducers take in previous state and reduce it to a new updated instance of state.
 
 
 ## Tech Stack
